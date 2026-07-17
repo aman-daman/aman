@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:rgb(5, 5, 51);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:#fff;
+    width:300px;
+    padding:35px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+.container h2{
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:2px solid rgb(92, 150, 191);
+    border-radius:5px;
+    font-size:16px;
+    outline:none;
+}
+
+button{
+    margin-top:15px;
+    width:100%;
+    padding:12px;
+    background:rgb(92, 150, 191);
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#2e59d9;
+}
+
+#imgBox{
+    margin-top:20px;
+}
+
+#qrImage{
+    display:none;
+    width:200px;
+    height:200px;
+    margin:auto;
+}
+    </style>
+        
+</head>
+<body>
+
+<div class="container">
+    <h2 style="color:rgb(92, 150, 191); font-size:24px;">QR Code Generator</h2>
+
+    <input type="text" id="qrText" placeholder="Enter text or URL">
+
+    <button onclick="generateQR()">Generate QR Code</button>
+
+    <div id="imgBox">
+        <img src="" id="qrImage" alt="QR Code">
+    </div>
+</div>
+
+<script>
+    function generateQR() {
+
+    let qrText = document.getElementById("qrText");
+    let qrImage = document.getElementById("qrImage");
+
+    if (qrText.value.length > 0) {
+
+        qrImage.src =
+            "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="
+            + encodeURIComponent(qrText.value);
+
+        qrImage.style.display = "block";
+
+    } else {
+        alert("Please enter text or a URL.");
+    }
+}
+</script>
+
+</body>
+</html>
